@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Formik, Form as FormikForm } from 'formik';
-import BasicRadioGroup from '../src/components/radioGroups/BasicRadioGroup';
+import { RadioGroup } from '../src';
 
 const wrapper = (Story: any) => (
   <Formik
@@ -17,9 +17,9 @@ const wrapper = (Story: any) => (
 
 const meta = {
   title: 'Eigentümerportal/Radio Groups/Basic Radio Group',
-  component: BasicRadioGroup,
+  component: RadioGroup,
   tags: ['autodocs'],
-} satisfies Meta<typeof BasicRadioGroup>;
+} satisfies Meta<typeof RadioGroup>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

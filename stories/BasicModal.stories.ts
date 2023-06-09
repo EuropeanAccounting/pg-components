@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import BasicModal from '../src/components/modals/BasicModal';
+import { Modal } from '../src';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'Eigentümerportal/Modals/Basic Modal',
-  component: BasicModal,
+  component: Modal,
   tags: ['autodocs'],
-} satisfies Meta<typeof BasicModal>;
+} satisfies Meta<typeof Modal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

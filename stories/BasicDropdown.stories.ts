@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import BasicDropdown from '../src/components/dropdowns/BasicDropdown';
+import { Dropdown } from '../src';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta = {
   title: 'Eigentümerportal/Dropdowns/Basic Dropdown',
-  component: BasicDropdown,
+  component: Dropdown,
   tags: ['autodocs'],
-} satisfies Meta<typeof BasicDropdown>;
+} satisfies Meta<typeof Dropdown>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

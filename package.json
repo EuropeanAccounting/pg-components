@@ -1,6 +1,6 @@
 {
   "name": "pg-components",
-  "version": "0.0.0-development",
+  "version": "0.1.0",
   "private": false,
   "description": "Package for all reusable PlattesGroup components",
   "main": "src/index.ts",
@@ -12,7 +12,7 @@
     "build-storybook": "storybook build"
   },
   "author": "PlattesGroup",
-  "license": "ISC",
+  "license": "Copyright",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.0",
     "@fortawesome/free-brands-svg-icons": "6.4.0",

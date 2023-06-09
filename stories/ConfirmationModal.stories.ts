@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import ConfirmationModal from '../src/components/modals/ConfirmationModal';
+import { ConfirmationModal } from '../src';
 import { faTrashCan, faQuestion, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction

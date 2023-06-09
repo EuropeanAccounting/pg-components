@@ -4,7 +4,8 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Local imports
-import { ActivityFeed } from '../src/components/feeds/ActivityFeed';
+import { ActivityFeed } from '../src';
+
 
 const meta = {
     title: 'Eigentümerportal/Feeds/Activity Feed',

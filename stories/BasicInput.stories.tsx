@@ -3,7 +3,7 @@ import { faUser, faJedi } from '@fortawesome/free-solid-svg-icons';
 import { Formik, Form as FormikForm } from 'formik';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import BasicInput from '../src/components/inputs/BasicInput';
+import { Input } from '../src';
 
 const wrapper = (Story: any, initialValues: any) => (
   <Formik
@@ -19,9 +19,9 @@ const wrapper = (Story: any, initialValues: any) => (
 
 const meta = {
   title: 'Eigentümerportal/Inputs/Basic Input',
-  component: BasicInput,
+  component: Input,
   tags: ['autodocs'],
-} satisfies Meta<typeof BasicInput>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

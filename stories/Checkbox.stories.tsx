@@ -3,7 +3,7 @@ import { Formik, Form as FormikForm } from 'formik';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Local imports
-import { Checkbox } from '../src/components/checkbox/Checkbox';
+import { Checkbox } from '../src';
 
 const wrapper = (Story: any) => (
     <Formik

@@ -2,7 +2,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Local imports
-import { Tooltip } from '../src/components/tooltips/Tooltip';
+import { Tooltip } from '../src';
 
 const meta = {
     title: 'Eigentümerportal/Tooltips/Tooltip',

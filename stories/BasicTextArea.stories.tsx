@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Formik, Form as FormikForm } from 'formik';
-import BasicTextArea from '../src/components/textArea/BasicTextArea';
+import { TextArea } from '../src';
 
 const wrapper = (Story: any) => (
   <Formik
@@ -29,9 +29,9 @@ const wrapperWithContent = (Story: any) => (
 
 const meta = {
   title: 'Eigentümerportal/Text Area/Basic Text Area',
-  component: BasicTextArea,
+  component: TextArea,
   tags: ['autodocs'],
-} satisfies Meta<typeof BasicTextArea>;
+} satisfies Meta<typeof TextArea>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

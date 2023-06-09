@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Local imports
-import Tabs from '../src/components/tabs/Tabs';
-import { Tab } from '../src/types/tab';
+import { Tabs, Tab } from '../src';
 
 const meta = {
     title: 'Eigentümerportal/Tabs/Tabs',

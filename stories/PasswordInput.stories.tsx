@@ -2,7 +2,7 @@
 import { Formik, Form as FormikForm } from 'formik';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import PasswordInput from '../src/components/inputs/PasswordInput';
+import { PasswordInput } from '../src';
 
 const wrapper = (Story: any) => (
   <Formik

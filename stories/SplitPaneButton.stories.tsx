@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from "react";
 
-import SplitPane from '../src/components/splitPane/SplitPane';
+import { SplitPane } from '../src';
 
 const meta = {
   title: 'Eigentümerportal/Split Pane/Split PaneAnimation',

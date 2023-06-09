@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Formik, Form as FormikForm } from 'formik';
-import Select from '../src/components/selects/Select';
+import { Select } from '../src';
 
 const wrapper = (Story: any) => (
   <Formik

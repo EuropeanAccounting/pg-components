@@ -3,7 +3,7 @@ import { faFontAwesome } from '@fortawesome/free-solid-svg-icons';
 import type { Meta, StoryObj } from '@storybook/react';
 
 // Local imports
-import Button from '../src/components/buttons/Button';
+import { Button } from '../src';
 
 const meta = {
     title: 'Eigentümerportal/Buttons/Buttons',
