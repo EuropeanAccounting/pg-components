@@ -1,0 +1,18 @@
+.tabs-buttons-scrollbar {
+    overflow-x: visible;
+    overflow-y: hidden;
+}
+
+.tabs-buttons-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.tabs-panel-scrollbar {
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+.tabs-panel-scrollbar::-webkit-scrollbar {
+    width: 1px;
+    /* display: none; */
+}

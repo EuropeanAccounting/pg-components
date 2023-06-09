@@ -1,0 +1,158 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Eigentümerportal/Introduction" />
+
+<style>
+  {`
+    .subheading {
+      --mediumdark: '#999999';
+      font-weight: 700;
+      font-size: 13px;
+      color: #999;
+      letter-spacing: 6px;
+      line-height: 24px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      margin-top: 40px;
+    }
+
+    .link-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      row-gap: 10px;
+    }
+
+    @media (min-width: 620px) {
+      .link-list {
+        row-gap: 20px;
+        column-gap: 20px;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media all and (-ms-high-contrast:none) {
+    .link-list {
+        display: -ms-grid;
+        -ms-grid-columns: 1fr 1fr;
+        -ms-grid-rows: 1fr 1fr;
+      }
+    }
+
+    .link-item {
+      display: block;
+      padding: 20px;
+      border: 1px solid #00000010;
+      border-radius: 5px;
+      transition: background 150ms ease-out, border 150ms ease-out, transform 150ms ease-out;
+      color: #333333;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .link-item:hover {
+      border-color: #1EA7FD50;
+      transform: translate3d(0, -3px, 0);
+      box-shadow: rgba(0, 0, 0, 0.08) 0 3px 10px 0;
+    }
+
+    .link-item:active {
+      border-color: #1EA7FD;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .link-item strong {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .link-item img {
+      height: 40px;
+      width: 40px;
+      margin-right: 15px;
+      flex: none;
+    }
+
+    .link-item span,
+    .link-item p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .tip {
+      display: inline-block;
+      border-radius: 1em;
+      font-size: 11px;
+      line-height: 12px;
+      font-weight: 700;
+      background: #E7FDD8;
+      color: #66BF3C;
+      padding: 4px 12px;
+      margin-right: 10px;
+      vertical-align: top;
+    }
+
+    .tip-wrapper {
+      font-size: 13px;
+      line-height: 20px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .tip-wrapper code {
+      font-size: 12px;
+      display: inline-block;
+    }
+  `}
+</style>
+
+# Eigentümerportal Storybook
+
+Welcome to the Eigentümerportal Storybook - a comprehensive toolkit of our React components meticulously curated and systematically organized for developing the new WuF platform. This is not just a manual; it's a bridge between our creative process and technical execution, facilitating a clear understanding of the look, feel, and functionality of our interface elements.
+
+Our Storybook is an interactive repository that caters to developers, designers, testers, and stakeholders alike. It's designed to streamline collaboration, improve component reusability, and ensure consistency across our platform.
+
+The Storybook provides detailed documentation of each component, including its usage, props, states, and code snippets, along with live previews. This helps us validate components in isolation, away from the business logic and context of the application. It speeds up development and debugging, making it easier to test various states and edge-cases, and mitigates the risk of unforeseen side-effects.
+
+Additionally, for designers and stakeholders, the Storybook serves as a living style guide, illustrating the actual look and behavior of components, which is more useful and reliable than static design mock-ups.
+
+Remember, the Storybook is a tool in our continuous journey to improve the WuF platform. It's a living document, updated and refined as our components evolve and as new ones get added. We strive to keep it robust, up-to-date, and user-friendly to ensure the best possible efficiency and collaboration.
+
+We encourage you to explore, use, and contribute to the Eigentümerportal Storybook, and look forward to seeing how it helps shape the future of the WuF platform. Let's make building and testing the WuF platform an enjoyable, creative, and fulfilling experience!
+
+Happy coding!
+
+<div className="subheading">Resources of interest</div>
+
+<div className="link-list">
+  <a className="link-item" href="https://nextjs.org/docs/getting-started/react-essentials" target="_blank">
+    <img src='https://static-00.iconduck.com/assets.00/nextjs-icon-512x512-11yvtwzn.png' alt="next js logo" />
+    <span>
+      <strong>NextJS 13 Docs</strong>
+      Core framework
+    </span>
+  </a>
+  <a className="link-item" href="https://tailwindcss.com/" target="_blank">
+    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/600px-Tailwind_CSS_Logo.svg.png' alt="tailwind css logo" />
+    <span>
+      <strong>Tailwind Docs</strong>
+      Configure & Customize
+    </span>
+  </a>
+  <a className="link-item" href="https://wind-ui.com/components/" target="_blank">
+    <img src='https://cdn-icons-png.flaticon.com/512/172/172922.png' alt="wind ui logo" />
+    <span>
+      <strong>Wind UI</strong>
+      Base of components
+    </span>
+  </a>
+  <a className="link-item" href="https://nivo.rocks/" target="_blank">
+    <img src='https://www.iconpacks.net/icons/1/free-chart-icon-646-thumb.png' alt="nivo logo" />
+    <span>
+      <strong>Nivo Charts</strong>
+      Best interactive charts
+    </span>
+  </a>
+</div>
