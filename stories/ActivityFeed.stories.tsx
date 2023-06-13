@@ -6,7 +6,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 // Local imports
 import { ActivityFeed } from '../src';
 
-
 const meta = {
     title: 'Eigentümerportal/Feeds/Activity Feed',
     component: ActivityFeed,

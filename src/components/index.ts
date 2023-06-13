@@ -7,7 +7,6 @@ export * from "./modals";
 export * from "./notifications";
 export { default as RadioGroup } from "./radioGroups";
 export { default as Select } from "./selects";
-export { default as SplitPane } from "./splitPane";
 export { default as Tabs } from "./tabs";
 export { default as TextArea } from "./textArea";
 export { default as Tooltip } from "./tooltips";

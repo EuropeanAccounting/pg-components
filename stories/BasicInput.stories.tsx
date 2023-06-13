@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Libraries imports
 import { faUser, faJedi } from '@fortawesome/free-solid-svg-icons';
 import { Formik, Form as FormikForm } from 'formik';

@@ -1,5 +1,5 @@
 // React imports
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 // Libraries imports
 import { motion } from 'framer-motion';

@@ -1,16 +1,17 @@
-'use client'
-
 // React imports
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 
 // Libraries imports
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Local imports
 import { itemVariants } from '../../framerMotion/dropdownVariants';
-import placeholder from '../../assets/Portrait_Placeholder.png';
 
 interface Props {
+    /**
+    * Img URL to show while loading
+    */
+    placeholder: string;
     /**
     * URL for the avatar picture
     */
@@ -24,7 +25,7 @@ interface Props {
     }[]
 }
 
-export default function AvatarDropdown({ picture, navigationItems }: Props): JSX.Element {
+export default function AvatarDropdown({ picture, navigationItems, placeholder }: Props): JSX.Element {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const wrapperRef = useRef<HTMLDivElement>(null);
 

@@ -1,7 +1,5 @@
-'use client'
-
 // React imports
-import { MouseEvent, useEffect, useRef, useState } from 'react';
+import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 
 // Libraries imports
 import { AnimatePresence, motion } from 'framer-motion';

@@ -1,3 +1,5 @@
+import React from 'react'
+
 // Libraries imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';

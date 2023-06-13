@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Libraries imports
 import { fa1, fa2, fa3 } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';

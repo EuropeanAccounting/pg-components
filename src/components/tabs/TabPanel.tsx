@@ -1,3 +1,5 @@
+import React from 'react'
+
 // Local imports
 import { sizeType } from "../../types/sizeType";
 import { Tab } from '../../types/tab';

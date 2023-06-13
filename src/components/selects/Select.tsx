@@ -1,6 +1,4 @@
-'use client'
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Field, FieldProps } from 'formik';
 import ReactSelect,

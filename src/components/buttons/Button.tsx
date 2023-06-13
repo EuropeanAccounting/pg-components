@@ -1,5 +1,5 @@
 // React imports
-import { ButtonHTMLAttributes, MouseEvent } from 'react';
+import React, { ButtonHTMLAttributes, MouseEvent } from 'react';
 
 // Libraries imports
 import { AnimatePresence, motion } from 'framer-motion';

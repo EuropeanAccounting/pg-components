@@ -17,6 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Normal: Story = {
   args: {
+    placeholder: '../assets/Portrait_Placeholder.png',
     picture: 'https://api.dicebear.com/6.x/bottts-neutral/svg?seed=OrAnnieeo',
     navigationItems: [
       {
@@ -41,6 +42,7 @@ export const Normal: Story = {
 
 export const NoPicture: Story = {
   args: {
+    placeholder: '../assets/Portrait_Placeholder.png',
     picture: undefined,
     navigationItems: [
       {
@@ -57,6 +59,7 @@ export const NoPicture: Story = {
 
 export const LongText: Story = {
   args: {
+    placeholder: '../assets/Portrait_Placeholder.png',
     picture: 'https://api.dicebear.com/6.x/bottts-neutral/svg?seed=ewrewrewr',
     navigationItems: [
       {

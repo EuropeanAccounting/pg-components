@@ -1,8 +1,9 @@
+import React from 'react'
+
 // Libraries imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { motion } from 'framer-motion';
-import classNames from 'classnames';
 
 interface Props {
     /**

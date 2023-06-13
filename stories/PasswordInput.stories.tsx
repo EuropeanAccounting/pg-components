@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Libraries imports
 import { Formik, Form as FormikForm } from 'formik';
 import type { Meta, StoryObj } from '@storybook/react';

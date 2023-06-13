@@ -1,7 +1,5 @@
-'use client'
-
 // React imports
-import { useId, useState } from 'react';
+import React, { useId, useState } from 'react';
 
 // Libraries imports
 import { Field } from 'formik';
