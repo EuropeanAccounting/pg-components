@@ -6,12 +6,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 // Local imports
 import { itemVariants } from '../../framerMotion/dropdownVariants';
+import SvgGradient from '../utils/SvgGradient';
 
 interface Props {
-    /**
-    * Img URL to show while loading
-    */
-    placeholder: string;
     /**
     * URL for the avatar picture
     */
@@ -25,7 +22,7 @@ interface Props {
     }[]
 }
 
-export default function AvatarDropdown({ picture, navigationItems, placeholder }: Props): JSX.Element {
+export default function AvatarDropdown({ picture, navigationItems }: Props): JSX.Element {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -45,8 +42,7 @@ export default function AvatarDropdown({ picture, navigationItems, placeholder }
             {/* <!-- Component: Basic dropdown menu--> */}
             <motion.div
                 ref={wrapperRef}
-                // key={'userdropdownkey'}
-                className='relative ml-2'
+                className='relative ml-2 select-none'
                 initial={false}
                 animate={isOpen ? 'open' : 'closed'}
             >
@@ -60,14 +56,18 @@ export default function AvatarDropdown({ picture, navigationItems, placeholder }
                     onClick={() => setIsOpen(prev => !prev)}
                 >
                     <span className='sr-only'>Open user menu</span>
-                    <img
-                        height={50}
-                        width={50}
-                        className='h-8 w-8 rounded-full'
-                        src={picture || placeholder}
-                        alt='user picture'
-                        // quality={50}
-                    />
+                    {
+                        picture ?
+                            <img
+                                height={50}
+                                width={50}
+                                className='h-8 w-8 rounded-full'
+                                src={picture}
+                                alt='user picture'
+                            />
+                            :
+                            <SvgGradient s={(new Date().getDate() * (new Date().getMonth() + 1)).toString()} />
+                    }
                 </button>
                 {/*  <!--  End Dropdown trigger --> */}
                 {/*  <!-- Start Menu list --> */}

@@ -75,6 +75,22 @@ export const EmptyWithoutIcon: Story = {
   ]
 };
 
+export const Required: Story = {
+  args: {
+    name: 'required',
+    label: 'Required Field',
+    required: true,
+  },
+  decorators: [
+    (Story) => {
+      const initialValues = {
+        story: '',
+      }
+      return wrapper(Story, initialValues);
+    }
+  ]
+};
+
 export const ReadOnly: Story = {
   args: {
     label: 'Address',

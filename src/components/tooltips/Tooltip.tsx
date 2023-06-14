@@ -13,7 +13,12 @@ interface Props {
     /**
      * Content of the tooltip
      */
-    text: string;
+    text: any;
+    /**
+     * Content of the div
+     */
+    children:any;
+
 }
 
 type positionType = 'top' | 'right' | 'bottom' | 'left';
@@ -39,19 +44,19 @@ const getSize = (size: sizeType): string => {
     return sizes[size];
 }
 
-export const Tooltip = ({ position = 'top', size = 'normal', text }: Props): JSX.Element => {
+export const Tooltip = ({ position = 'top', size = 'normal', text, children }: Props): JSX.Element => {
     const id = useId();
     return (
         <span
             className='relative overflow-hidden cursor-pointer group hover:overflow-visible focus-visible:outline-none'
             aria-describedby={id}
         >
-            Lorem ipsum
+            {children}
             <span
                 role='tooltip'
                 id={id}
                 className={`
-                    invisible absolute z-10 w-48 rounded bg-slate-700 text-white opacity-0 transition-all before:invisible 
+                    invisible absolute z-10 w-auto rounded bg-slate-700 text-white opacity-0 transition-all before:invisible 
                     before:absolute before:z-10 before:opacity-0 before:transition-all before:content-[''] group-hover:visible 
                     group-hover:block group-hover:opacity-100 group-hover:before:visible group-hover:before:opacity-100 
                     ${getPosition(position, size)}

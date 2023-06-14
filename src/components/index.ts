@@ -10,3 +10,4 @@ export { default as Select } from "./selects";
 export { default as Tabs } from "./tabs";
 export { default as TextArea } from "./textArea";
 export { default as Tooltip } from "./tooltips";
+export { default as SvgGradient } from "./utils";
