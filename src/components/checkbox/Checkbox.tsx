@@ -7,24 +7,28 @@ import FormError from '../notifications/FormError';
 
 interface Props {
     /**
-     * Specifies whether the UI component responds to user interaction.
-     */
-    disabled?: boolean;
-    /**
-     * Specifies the compoenent auxiliar text.
-     */
-    helpText?: string;
-    /**
-     * HTML name field
-     */
+    * HTML name field
+    */
     name: string;
     /**
-     * Specifies the compoenent text.
-     */
+    * Required HTML prop
+    */
+    required?: boolean;
+    /**
+    * Specifies whether the UI component responds to user interaction.
+    */
+    disabled?: boolean;
+    /**
+    * Specifies the compoenent auxiliar text.
+    */
+    helpText?: string;
+    /**
+    * Specifies the compoenent text.
+    */
     text?: string;
     /**
-     * Specifies the variant of the component.
-     */
+    * Specifies the variant of the component.
+    */
     variant?: variantType;
 }
 
@@ -72,6 +76,7 @@ export const Checkbox = (props: Props): JSX.Element => {
                         <label
                             className={`
                                 pl-2 cursor-pointer text-secondary-500 peer-disabled:cursor-not-allowed 
+                                peer-required:after:content-['\\00a0*'] peer-invalid:after:text-pink-500
                                 peer-disabled:text-secondary-400
                             `}
                             htmlFor={id}

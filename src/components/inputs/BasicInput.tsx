@@ -56,22 +56,20 @@ export default function BasicInput({
         className={`
             peer relative h-12 w-full border-slate-200 px-4 ${icon ? 'pl-12' : ''} ${isSecondary ? 'rounded border' : 'border-b'}
           text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white
-          invalid:border-pink-500 invalid:text-pink-500 focus:border-primary-500 focus:outline-none
-          invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50
-          disabled:text-slate-400
+          focus:border-primary-500 focus:outline-none focus-visible:outline-none
+          disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400
         `}
       />
       <label
         htmlFor={inputId}
         className={`
-              absolute left-2 -top-2 z-[1] cursor-text px-2 text-xs text-slate-400 transition-all
+              absolute select-none left-2 -top-2 z-[1] cursor-text px-2 text-xs text-slate-400 transition-all
               before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full
             before:bg-white before:rounded before:transition-all peer-placeholder-shown:top-3
               ${icon ? 'peer-placeholder-shown:left-10' : ''} peer-placeholder-shown:text-base
-              peer-required:after:text-pink-500 peer-required:after:content-['\\00a0*'] peer-invalid:text-pink-500
+              peer-required:after:content-['\\00a0*'] peer-required:after:text-pink-500
               peer-focus:-top-2 peer-focus:left-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-primary-500
-              peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400
-              peer-disabled:before:bg-transparent
+              peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent
             `}
       >
         {label}
@@ -80,8 +78,7 @@ export default function BasicInput({
         icon &&
         <FontAwesomeIcon
           icon={icon}
-          className="absolute top-3 left-4 h-6 w-6 text-slate-400 peer-focus:text-primary-500
-        peer-disabled:cursor-not-allowed"
+          className="absolute top-3 left-4 h-6 w-6 text-slate-400 peer-focus:text-primary-500 peer-disabled:cursor-not-allowed"
         />
       }
       <FormError name={rest.name} />

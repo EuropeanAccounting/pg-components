@@ -21,13 +21,13 @@ interface Props {
     */
     label?: string;
     /**
-    * Disabled HTML prop
-    */
-    disabled?: boolean;
-    /**
     * Required HTML prop
     */
     required?: boolean;
+    /**
+    * Disabled HTML prop
+    */
+    disabled?: boolean;
 }
 
 export const BasicRadioGroup = ({

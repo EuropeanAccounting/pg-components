@@ -68,6 +68,17 @@ export const With_Auxiliar_Text: Story = {
     ]
 };
 
+export const Required: Story = {
+    args: {
+        name: 'required',
+        text: 'Required Check Box',
+        required: true,
+    },
+    decorators: [
+        (Story) => wrapper(Story),
+    ]
+};
+
 export const Disabled: Story = {
     args: {
         name: 'disabled',

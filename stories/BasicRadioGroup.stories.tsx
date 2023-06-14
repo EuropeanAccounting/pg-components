@@ -51,9 +51,35 @@ export const Normal: Story = {
   ]
 };
 
+export const Required: Story = {
+  args: {
+    name: 'story',
+    required: true,
+    label: 'Select a country:',
+    inputsList: [
+      {
+        label: 'Spain',
+        value: 'es'
+      },
+      {
+        label: 'France',
+        value: 'fr'
+      },
+      {
+        label: 'Germany',
+        value: 'de'
+      },
+    ],
+  },
+  decorators: [
+    (Story) => wrapper(Story),
+  ]
+};
+
 export const Disabled: Story = {
   args: {
     name: 'story',
+    disabled: true,
     label: 'Select a country (you can\'t):',
     inputsList: [
       {
@@ -69,7 +95,6 @@ export const Disabled: Story = {
         value: 'de'
       },
     ],
-    disabled: true,
   },
   decorators: [
     (Story) => wrapper(Story),
