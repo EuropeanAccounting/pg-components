@@ -22,8 +22,8 @@ const SvgGradient = ({ s, size = 256 }: { s: string, size?: number }): JSX.Eleme
       <circle cx={size / 2} cy={size / 2} r={size / 2} fill="url(#gradient)" />
       <defs>
         <linearGradient id="gradient" x1="0" y1="0" x2={size} y2={size} gradientUnits="userSpaceOnUse">
-          <stop stop-color={c1} />
-          <stop offset="1" stop-color={c2} />
+          <stop stopColor={c1} />
+          <stop offset="1" stopColor={c2} />
         </linearGradient>
       </defs>
     </svg>
