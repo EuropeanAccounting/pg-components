@@ -1,7 +1,7 @@
 import React from 'react'
 import { ErrorMessage } from 'formik'
 
-const FormError = ({ name }: { name: string }) => {
+const FormError = ({ name }: { name: string }): React.ReactElement => {
     return (
         <div className='h-4 block'>
             <ErrorMessage

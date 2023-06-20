@@ -28,7 +28,7 @@ const dataSource: Tab[] = [
     {
         title: 'Test 2',
         icon: fa2,
-        children: <div className='w-36 h-36 flex justify-center'>
+        children: <div className='w-full h-48 flex justify-center items-center'>
             <motion.div
                 layout
                 style={{

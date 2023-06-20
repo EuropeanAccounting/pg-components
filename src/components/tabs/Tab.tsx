@@ -40,7 +40,7 @@ const getTabSpanSize = (size: sizeType): string => {
     return sizes[size];
 }
 
-export default function TabButton({ setTabSelected, size, tab, tabSelected }: Props) {
+export default function TabButton({ setTabSelected, size, tab, tabSelected }: Props): React.ReactElement {
     const { icon, title, index, panelId, tabId } = tab;
     if (index == undefined) return <></>;
     const indexAux = index + 1;

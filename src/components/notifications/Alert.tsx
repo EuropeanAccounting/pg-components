@@ -88,7 +88,7 @@ export const Alert = ({
     onHidden = () => null,
     title,
     type = 'default'
-}: Props): JSX.Element =>
+}: Props): React.ReactElement =>
     <AnimatePresence>
         {
             isVisible &&

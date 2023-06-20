@@ -44,7 +44,7 @@ const getSize = (size: sizeType): string => {
     return sizes[size];
 }
 
-export const Tooltip = ({ position = 'top', size = 'normal', text, children }: Props): JSX.Element => {
+export const Tooltip = ({ position = 'top', size = 'normal', text, children }: Props): React.ReactElement => {
     const id = useId();
     return (
         <span

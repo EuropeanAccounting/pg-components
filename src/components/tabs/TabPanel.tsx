@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 // Local imports
-import { sizeType } from "../../types/sizeType";
+import { sizeType } from '../../types/sizeType';
 import { Tab } from '../../types/tab';
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
     }
 }
 
-export default function TabPanel({ tab, tabSelected }: Props) {
+export default function TabPanel({ tab, tabSelected }: Props): React.ReactElement {
     const { index, panelId, tabId, children } = tab;
     if (index == undefined || tabSelected.currentTab !== index + 1) return <></>;
     return (

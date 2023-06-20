@@ -79,7 +79,7 @@ export default function ConfirmationModal({
     confirmButtonText = 'Yes',
     cancelButtonText = 'Cancel',
     onConfirm
-}: Props): JSX.Element {
+}: Props): React.ReactElement {
     const [isShowing, setIsShowing] = useState<boolean>(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -174,7 +174,8 @@ export default function ConfirmationModal({
                                         showConfirmButton &&
                                         <button
                                             onClick={() => {
-                                                onConfirm && onConfirm()
+                                                //@ts-ignore
+                                                onConfirm()
                                                 setIsShowing(false)
                                             }}
                                             className={`

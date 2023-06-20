@@ -1,6 +1,12 @@
+// React imports
 import React, { useState } from 'react';
+
+// Libraries imports
+import { faChevronRight, faXmark, faBan } from '@fortawesome/free-solid-svg-icons';
+import { Field, FieldInputProps, FieldProps } from 'formik';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import { Field, FieldProps } from 'formik';
+import classNames from 'classnames';
 import ReactSelect,
 {
     ClearIndicatorProps,
@@ -10,16 +16,14 @@ import ReactSelect,
     MultiValueGenericProps,
     MultiValueRemoveProps,
     NoticeProps
-} from 'react-select'
-import classNames from 'classnames';
-import { faChevronRight, faXmark, faBan } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from 'react-select';
 
+// Local imports
 import { sizeType } from '../../types/sizeType';
 import FormError from '../notifications/FormError';
 
 /////////////////////// Start Select Components ///////////////////////
-const DropdownIndicator = ({ selectProps }: DropdownIndicatorProps) => {
+const DropdownIndicator = ({ selectProps }: DropdownIndicatorProps): React.ReactElement => {
     // @ts-ignore
     const { menuIsOpen, size } = selectProps;
     return (
@@ -48,7 +52,7 @@ const DropdownIndicator = ({ selectProps }: DropdownIndicatorProps) => {
     )
 }
 
-const IndicatorSeparator = ({ innerProps, selectProps }: IndicatorSeparatorProps) => {
+const IndicatorSeparator = ({ innerProps, selectProps }: IndicatorSeparatorProps): React.ReactElement => {
     const { menuIsOpen } = selectProps;
     return (
         <span
@@ -63,7 +67,7 @@ const IndicatorSeparator = ({ innerProps, selectProps }: IndicatorSeparatorProps
     )
 }
 
-const ClearIndicator = ({ innerProps, selectProps }: ClearIndicatorProps) => {
+const ClearIndicator = ({ innerProps, selectProps }: ClearIndicatorProps): React.ReactElement => {
     // @ts-ignore
     const { menuIsOpen, size } = selectProps;
     return (
@@ -84,7 +88,7 @@ const ClearIndicator = ({ innerProps, selectProps }: ClearIndicatorProps) => {
     )
 }
 
-const Menu = ({ children, selectProps, innerRef, innerProps }: MenuProps) => {
+const Menu = ({ children, selectProps, innerRef, innerProps }: MenuProps): React.ReactElement => {
     const { menuIsOpen } = selectProps;
     return (
         <motion.div
@@ -113,30 +117,28 @@ const Menu = ({ children, selectProps, innerRef, innerProps }: MenuProps) => {
     )
 }
 
-const MultiValueContainer = ({ children, innerProps }: MultiValueGenericProps) => {
-    return (
-        <motion.div
-            initial={{
-                clipPath: 'inset(0% 100% 0% 0%)'
-            }}
-            animate={{
-                clipPath: 'inset(0% 0% 0% 0%)',
-                transition: {
-                    type: 'spring',
-                    bounce: 0,
-                    duration: 0.5
-                }
-            }}
-            {...innerProps}
-        >
-            <div className='flex flex-row gap-2 items-center justify-center rounded bg-slate-100 px-1 ml-1 mb-1'>
-                {children}
-            </div>
-        </motion.div>
-    )
-}
+const MultiValueContainer = ({ children, innerProps }: MultiValueGenericProps): React.ReactElement => (
+    <motion.div
+        initial={{
+            clipPath: 'inset(0% 100% 0% 0%)'
+        }}
+        animate={{
+            clipPath: 'inset(0% 0% 0% 0%)',
+            transition: {
+                type: 'spring',
+                bounce: 0,
+                duration: 0.5
+            }
+        }}
+        {...innerProps}
+    >
+        <div className='flex flex-row gap-2 items-center justify-center rounded bg-slate-100 px-1 ml-1 mb-1'>
+            {children}
+        </div>
+    </motion.div>
+)
 
-const MultiValueRemove = ({ innerProps, selectProps }: MultiValueRemoveProps) => {
+const MultiValueRemove = ({ innerProps, selectProps }: MultiValueRemoveProps): React.ReactElement => {
     // @ts-ignore
     const { size } = selectProps;
     return (
@@ -152,7 +154,7 @@ const MultiValueRemove = ({ innerProps, selectProps }: MultiValueRemoveProps) =>
     )
 }
 
-const NoOptionsMessage = ({ innerProps, selectProps }: NoticeProps) => {
+const NoOptionsMessage = ({ innerProps, selectProps }: NoticeProps): React.ReactElement => {
     // @ts-ignore
     const { size } = selectProps;
     return (
@@ -228,6 +230,10 @@ interface Props {
     * Specifies if the form should submit onChange
     */
     submitOnChange?: boolean;
+    /**
+     * Determines whether a small space should be reserved for a error message or not.
+     */
+    needsErrorMessage?: boolean;
 }
 
 const Select = ({
@@ -238,18 +244,53 @@ const Select = ({
     isClearable = false,
     isMulti = false,
     submitOnChange = false,
+    needsErrorMessage = true,
     ...rest
-}: Props) => {
+}: Props): React.ReactElement => {
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
     rest.required && (label += ' *');
 
+    const requiredNoValue = (field: FieldInputProps<any>) => rest.required && !field.value;
+    const isBase = () => size === 'base';
+
+    const labelMenuIsOpenClasses = (field: FieldInputProps<any>): string => {
+        if (menuIsOpen) {
+            const isMultiClasses = isMulti ? '-top-4' : '-top-2';
+            const requiredClasses = requiredNoValue(field) ? 'text-pink-500' : 'text-primary-500';
+            return classNames('text-xs', isMultiClasses, requiredClasses);
+        } else {
+            const isBaseClasses = isBase() ? 'top-2.5 text-sm' : 'top-3 text-base';
+            const textClasses = field.value ? '-top-2 text-xs' : isBaseClasses;
+            return classNames('text-slate-400', textClasses);
+        }
+    };
+
+    const getControlClasses = (isDisabled: boolean, menuIsOpen: boolean, field: FieldInputProps<any>): string => {
+        const baseClasses = 'w-full px-4 transition-all';
+
+        const isMultiIsBaseClasses = isBase() ? 'min-h-[2.5rem] text-sm' : 'min-h-[3rem] text-base';
+        const notIsMultiIsBaseClasses = isBase() ? 'h-10 text-sm' : 'h-12 text-base';
+        const isMultiClasses = isMulti ? classNames(isMultiIsBaseClasses, 'h-auto') : notIsMultiIsBaseClasses;
+
+        const isSecondaryClasses = rest.isSecondary ? 'rounded border' : 'border-b';
+
+        const menuIsOpenRequired = requiredNoValue(field) ? 'border-pink-500' : 'border-primary-500';
+        const menuIsOpenClasses = menuIsOpen ? menuIsOpenRequired : 'border-slate-200';
+
+        const isDisabledClasses = isDisabled ? 'bg-slate-50 text-slate-400' : 'bg-white text-slate-500';
+
+        return classNames(baseClasses, isMultiClasses, isSecondaryClasses, menuIsOpenClasses, isDisabledClasses)
+    };
+
     return (
-        <div className={
-            classNames(
-                'w-full relative',
-                rest.isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
-            )
-        }>
+        <div
+            className={
+                classNames(
+                    'w-full relative',
+                    rest.isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
+                )
+            }
+        >
             <Field name={rest.name} >
                 {({ form, field }: FieldProps) => (
                     <>
@@ -280,31 +321,20 @@ const Select = ({
                             placeholder=''
                             options={inputsList}
                             onChange={(newValue: any) => {
-                                var returnValue = undefined;
-                                !isMulti
-                                    ? returnValue = newValue?.value || ''
-                                    : returnValue = newValue.map((obj: { value: string, label: string }) => obj.value)
+                                const returnValue = !isMulti
+                                    ? newValue.value ?? ''
+                                    : newValue.map((obj: { value: string, label: string }) => obj.value)
                                 form.setFieldValue(rest.name, returnValue)
                                 submitOnChange && form.submitForm()
                             }}
                             classNames={{
-                                control: ({ isDisabled, menuIsOpen, isMulti }) =>
-                                    classNames(
-                                        'w-full px-4 transition-all',
-                                        isMulti ?
-                                            classNames(size === 'base' ? 'min-h-[2.5rem] text-sm' : 'min-h-[3rem] text-base', 'h-auto')
-                                            :
-                                            (size === 'base' ? 'h-10 text-sm' : 'h-12 text-base'),
-                                        rest.isSecondary ? 'rounded border' : 'border-b',
-                                        menuIsOpen ? ((rest.required && !field.value) ? "border-pink-500" : 'border-primary-500') : 'border-slate-200',
-                                        isDisabled ? 'bg-slate-50 text-slate-400' : 'bg-white text-slate-500'
-                                    ),
+                                control: ({ isDisabled, menuIsOpen }) => getControlClasses(isDisabled, menuIsOpen, field),
                                 option: ({ isSelected }) =>
                                     classNames(
                                         "w-full flex items-start justify-start px-5 transition-colors duration-300",
                                         "hover:bg-primary-100 hover:text-primary-500 focus:bg-primary-300 focus:outline-none focus-visible:outline-none",
                                         isSelected ? 'bg-primary-600 text-primary-100' : 'bg-none text-slate-500',
-                                        size === 'base' ? 'gap-2 p-2' : 'gap-3 p-3'
+                                        isBase() ? 'gap-2 p-2' : 'gap-3 p-3'
                                     ),
                             }}
                         />
@@ -314,16 +344,7 @@ const Select = ({
                                 classNames(
                                     "pointer-events-none absolute left-2 z-[1] px-2 transition-all",
                                     "before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:transition-all",
-                                    menuIsOpen ?
-                                        classNames(
-                                            classNames(isMulti ? '-top-4' : '-top-2', 'text-xs'),
-                                            (rest.required && !field.value) ? "text-pink-500" : 'text-primary-500',
-                                        )
-                                        :
-                                        classNames(
-                                            'text-slate-400',
-                                            field.value ? '-top-2 text-xs' : (size === 'base' ? 'top-2.5 text-sm' : 'top-3 text-base'),
-                                        ),
+                                    labelMenuIsOpenClasses(field),
                                     rest.isDisabled ? 'text-slate-400 before:bg-transparent' : 'before:bg-white'
                                 )
                             }
@@ -333,7 +354,10 @@ const Select = ({
                     </>
                 )}
             </Field>
-            <FormError name={rest.name} />
+            {
+                needsErrorMessage &&
+                <FormError name={rest.name} />
+            }
         </div>
     )
 }

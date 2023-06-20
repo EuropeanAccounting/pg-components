@@ -53,7 +53,7 @@ export default function BasicTextArea({
     size = 'base',
     isSecondary,
     ...rest
-}: Props): JSX.Element {
+}: Props): React.ReactElement {
     const textAreaId = useId();
     return (
         <div className='relative'>

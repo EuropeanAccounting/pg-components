@@ -24,7 +24,7 @@ interface Props {
 export default function Tabs({
     dataSource,
     size = 'base'
-}: Props) {
+}: Props): React.ReactElement {
 
     const wrapperRef = useRef<HTMLUListElement>(null);
 
@@ -35,44 +35,21 @@ export default function Tabs({
     })
 
     const handleKeyDown = useCallback((e: { keyCode: number; target: any }): void => {
-        if (e.keyCode === 39) {
-            if (wrapperRef.current && wrapperRef.current?.contains(e.target)) {
-                if (
-                    tabSelected.currentTab >= 1 &&
-                    tabSelected.currentTab < tabSelected.noTabs
-                ) {
-                    setTabSelected({
-                        ...tabSelected,
-                        currentTab: tabSelected.currentTab + 1,
-                    })
-                } else {
-                    setTabSelected({
-                        ...tabSelected,
-                        currentTab: 1,
-                    })
-                }
+        //@ts-ignore
+        if (wrapperRef.current.contains(e.target)) {
+            if (e.keyCode === 39) {
+                const nextTab = (tabSelected.currentTab >= 1 && tabSelected.currentTab < tabSelected.noTabs)
+                    ? tabSelected.currentTab + 1
+                    : 1;
+                setTabSelected((prevTabSelected) => ({ ...prevTabSelected, currentTab: nextTab }));
+            } else if (e.keyCode === 37) {
+                const prevTab = (tabSelected.currentTab > 1 && tabSelected.currentTab <= tabSelected.noTabs)
+                    ? tabSelected.currentTab - 1
+                    : tabSelected.noTabs;
+                setTabSelected((prevTabSelected) => ({ ...prevTabSelected, currentTab: prevTab }));
             }
         }
-
-        if (e.keyCode === 37) {
-            if (wrapperRef.current && wrapperRef.current.contains(e.target)) {
-                if (
-                    tabSelected.currentTab > 1 &&
-                    tabSelected.currentTab <= tabSelected.noTabs
-                ) {
-                    setTabSelected({
-                        ...tabSelected,
-                        currentTab: tabSelected.currentTab - 1,
-                    })
-                } else {
-                    setTabSelected({
-                        ...tabSelected,
-                        currentTab: tabSelected.noTabs,
-                    })
-                }
-            }
-        }
-    }, [tabSelected]);
+    }, [tabSelected, wrapperRef]);
 
     useEffect(() => {
         if (dataSource) {
@@ -113,7 +90,7 @@ export default function Tabs({
                 ref={wrapperRef}
             >
                 {
-                    tabs!.map(tab =>
+                    tabs.map(tab =>
                         <TabButton
                             key={tab.title}
                             setTabSelected={setTabSelected}
@@ -126,7 +103,7 @@ export default function Tabs({
             </motion.ul>
             <motion.div layout className='h-full tabs-panel-scrollbar'>
                 {
-                    tabs!.map(tab =>
+                    tabs.map(tab =>
                         <TabPanel
                             key={tab.title}
                             setTabSelected={setTabSelected}

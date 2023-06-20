@@ -2,9 +2,11 @@
 import React, { useId, useState } from 'react';
 
 // Libraries imports
-import { Field } from 'formik';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { Field } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// Local imports
 import FormError from '../notifications/FormError';
 
 interface Props {
@@ -34,7 +36,7 @@ interface Props {
   readOnly?: boolean;
 }
 
-export default function PasswordInput(props: Props) {
+export default function PasswordInput(props: Props): React.ReactElement {
   const { label, isSecondary, ...rest } = props;
 
   const inputId = useId();
