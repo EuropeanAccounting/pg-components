@@ -22,7 +22,7 @@ interface Props {
     }[]
 }
 
-export default function AvatarDropdown({ picture, navigationItems }: Props): JSX.Element {
+export default function AvatarDropdown({ picture, navigationItems }: Props): React.ReactElement {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const wrapperRef = useRef<HTMLDivElement>(null);
 

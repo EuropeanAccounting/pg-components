@@ -53,7 +53,7 @@ export const Badge = ({
     rounded = true,
     type = 'default',
     value = undefined,
-}: Props): JSX.Element =>
+}: Props): React.ReactElement =>
     <motion.span
         className={`
             min-h-[16px] min-w-[16px] flex items-center justify-center gap-1 px-1.5 text-sm text-white border

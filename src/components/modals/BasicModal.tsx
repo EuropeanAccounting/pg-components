@@ -35,7 +35,7 @@ export default function BasicModal({
     bodyText,
     showCloseButton = true,
     hideOnOutsideClick = true,
-}: Props): JSX.Element {
+}: Props): React.ReactElement {
 
     const [isShowing, setIsShowing] = useState<boolean>(false);
     const wrapperRef = useRef<HTMLDivElement>(null);

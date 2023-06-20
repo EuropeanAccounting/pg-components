@@ -21,7 +21,7 @@ interface Props {
     }[]
 }
 
-export default function BasicDropdown({ label, navigationItems }: Props): JSX.Element {
+export default function BasicDropdown({ label, navigationItems }: Props): React.ReactElement {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const wrapperRef = useRef<HTMLDivElement>(null)
 

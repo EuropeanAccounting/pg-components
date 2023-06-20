@@ -51,7 +51,7 @@ const getSVGColors = (variant: variantType): string => {
     return colors[variant];
 }
 
-export const Checkbox = (props: Props): JSX.Element => {
+export const Checkbox = (props: Props): React.ReactElement => {
 
     const id = useId();
     const { helpText, text, variant = 'primary', ...rest } = props;

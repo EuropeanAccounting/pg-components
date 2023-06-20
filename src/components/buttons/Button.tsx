@@ -83,7 +83,7 @@ export const Button = ({
     elevated = false,
     disabled = false,
     type = 'button'
-}: Props): JSX.Element =>
+}: Props): React.ReactElement =>
     <AnimatePresence>
         <motion.button
             className={`inline-flex w-full font-semibold items-center justify-center gap-2 text-sm tracking-wide transition duration-300 

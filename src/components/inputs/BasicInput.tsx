@@ -5,6 +5,8 @@ import React, { useId } from 'react';
 import { Field } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+
+// Local imports
 import FormError from '../notifications/FormError';
 
 interface Props {
@@ -43,7 +45,7 @@ export default function BasicInput({
   label,
   isSecondary,
   ...rest
-}: Props) {
+}: Props): React.ReactElement {
 
   const inputId = useId();
 

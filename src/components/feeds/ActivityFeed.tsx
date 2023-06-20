@@ -13,7 +13,7 @@ interface Props {
     /**
      * Array of activities to display
      */
-    activities: Activity[];
+    activities: ActivityInterface[];
     /**
      * Size of the feed
      */
@@ -46,7 +46,7 @@ export const ActivityFeed = ({
     activities,
     size = 'base',
     visible = true
-}: Props): JSX.Element => (
+}: Props): React.ReactElement => (
     <AnimatePresence>
         {
             visible &&
@@ -82,18 +82,18 @@ export const ActivityFeed = ({
 
 export default ActivityFeed;
 
-interface Activity {
+interface ActivityInterface {
     description: string,
     icon: IconProp,
     time: string;
 }
 
 interface ActivityProps {
-    activity: Activity;
+    activity: ActivityInterface;
     size: sizeType;
 }
 
-const Activity = ({ activity, size }: ActivityProps): JSX.Element => {
+const Activity = ({ activity, size }: ActivityProps): React.ReactElement => {
     const { description, icon, time } = activity;
     return (
         <motion.li

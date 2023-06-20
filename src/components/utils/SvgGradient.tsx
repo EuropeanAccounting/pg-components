@@ -1,5 +1,8 @@
+// React imports
 import React from 'react';
-import ColorHash from "color-hash";
+
+// Libraries imports
+import ColorHash from 'color-hash';
 
 const colorHash = new ColorHash({ saturation: 1.0 });
 
@@ -14,7 +17,7 @@ const generateColours = (s: string): [string, string] => {
   return [c1, c2];
 };
 
-const SvgGradient = ({ s, size = 256 }: { s: string, size?: number }): JSX.Element => {
+const SvgGradient = ({ s, size = 256 }: { s: string, size?: number }): React.ReactElement => {
   const [c1, c2] = generateColours(s);
 
   return (
