@@ -97,12 +97,12 @@ export const Alert = ({
     const [isAlertVisible, setIsAlertVisible] = useState<boolean>(isVisible);
 
     useEffect(() => {
-        duration &&
+        isVisible && duration &&
             setTimeout(() => {
                 setIsAlertVisible(false);
                 onHidden();
             }, duration);
-    }, []);
+    }, [isVisible]);
 
 
     return (
