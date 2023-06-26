@@ -97,6 +97,7 @@ export const Alert = ({
     const [isAlertVisible, setIsAlertVisible] = useState<boolean>(isVisible);
 
     useEffect(() => {
+        setIsAlertVisible(isVisible);
         isVisible && duration &&
             setTimeout(() => {
                 setIsAlertVisible(false);
