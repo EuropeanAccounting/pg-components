@@ -1,5 +1,5 @@
 // React imports
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useEffect, useState } from 'react';
 
 // Libraries imports
 import { AnimatePresence, motion } from 'framer-motion';
@@ -20,6 +20,10 @@ interface Props {
      */
     dismissable?: boolean;
     /**
+     * Period of time (ms) before hidding the alert.
+     */
+    duration?: number;
+    /**
      * Indicate whether the alert should display an icon or not.
      * The icon varies depending on the type of alert.
      */
@@ -27,11 +31,11 @@ interface Props {
     /**
      * Determines whether the alert is visible or not.
      */
-    isVisible: boolean;
+    isVisible?: boolean;
     /**
      * A function that is executed after the UI component is hidden.
      */
-    onHidden?: (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
+    onHidden?: (e?: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
     /**
      * Title of the alert.
      */
@@ -83,66 +87,81 @@ const getButtonColorStyle = (type: alertType): string => {
 export const Alert = ({
     body,
     dismissable = false,
+    duration,
     icon = false,
-    isVisible,
+    isVisible = true,
     onHidden = () => null,
     title,
     type = 'default'
-}: Props): React.ReactElement =>
-    <AnimatePresence>
-        {
-            isVisible &&
-            <motion.div
-                className={`
+}: Props): React.ReactElement => {
+    const [isAlertVisible, setIsAlertVisible] = useState<boolean>(isVisible);
+
+    useEffect(() => {
+        duration &&
+            setTimeout(() => {
+                setIsAlertVisible(false);
+                onHidden();
+            }, duration);
+    }, []);
+
+
+    return (
+        <AnimatePresence>
+            {
+                isAlertVisible &&
+                <motion.div
+                    className={`
                     flex justify-between w-full items-center gap-4 rounded border px-4 py-3 text-base
                     ${getContainerColorStyle(type)}
                 `}
-                role="alert"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: .5, ease: 'easeInOut' } }}
-                exit={{ opacity: 0, transition: { duration: .5, ease: 'easeInOut' } }}
-            >
-                {/* Icons */}
-                <div className='flex flex-row'>
-                    {/* Icon */}
-                    {icon && <FontAwesomeIcon icon={getIcon(type)} className='h-6 w-6 text-xl' />}
-                    <div className={`${icon && 'pl-4'}`}>
-                        {/* Title */}
-                        {
-                            title &&
-                            <h3 className="mb-2 font-semibold">
-                                {title}
-                            </h3>
-                        }
-                        {/*  body */}
-                        <p className="flex-1">{body}</p>
+                    role="alert"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1, transition: { duration: .5, ease: 'easeInOut' } }}
+                    exit={{ opacity: 0, transition: { duration: .5, ease: 'easeInOut' } }}
+                >
+                    {/* Icons */}
+                    <div className='flex flex-row'>
+                        {/* Icon */}
+                        {icon && <FontAwesomeIcon icon={getIcon(type)} className='h-6 w-6 text-xl' />}
+                        <div className={`${icon && 'pl-4'}`}>
+                            {/* Title */}
+                            {
+                                title &&
+                                <h3 className="mb-2 font-semibold">
+                                    {title}
+                                </h3>
+                            }
+                            {/*  body */}
+                            <p className="flex-1">{body}</p>
+                        </div>
                     </div>
-                </div>
-                {/*  <!-- Close button --> */}
-                {
-                    dismissable &&
-                    <motion.button
-                        aria-label="Close"
-                        className={`
-                            inline-flex h-8 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded-full px-4 text-xs
-                            font-medium tracking-wide transition duration-300 focus-visible:outline-none disabled:cursor-not-allowed 
-                            disabled:shadow-none disabled:hover:bg-transparent
-                            ${getButtonColorStyle(type)}
+                    {/*  <!-- Close button --> */}
+                    {
+                        dismissable &&
+                        <motion.button
+                            aria-label="Close"
+                            className={`
+                        inline-flex h-8 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded-full px-4 text-xs
+                        font-medium tracking-wide transition duration-300 focus-visible:outline-none disabled:cursor-not-allowed 
+                        disabled:shadow-none disabled:hover:bg-transparent
+                        ${getButtonColorStyle(type)}
                         `}
-                        whileHover={{ rotate: 90 }}
-                        transition={{
-                            ease: "linear",
-                            duration: 0.01
-                        }}
-                        onClick={(e) => onHidden(e)}
-                    >
-                        <span className="relative only:-mx-4 text-xl flex">
-                            <FontAwesomeIcon icon={faXmark} />
-                        </span>
-                    </motion.button>
-                }
-            </motion.div>
-        }
-    </AnimatePresence>
+                            whileHover={{ rotate: 90 }}
+                            transition={{
+                                ease: "linear",
+                                duration: 0.01
+                            }}
+                            onClick={(e) => onHidden(e)}
+                        >
+                            <span className="relative only:-mx-4 text-xl flex">
+                                <FontAwesomeIcon icon={faXmark} />
+                            </span>
+                        </motion.button>
+                    }
+                </motion.div>
+            }
+        </AnimatePresence>
+    );
+};
 
 export default Alert;

@@ -78,6 +78,13 @@ export const With_Icon: Story = {
   },
 };
 
+export const Timed: Story = {
+  args: {
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet maximus lorem. Sed lobortis vitae arcu non tincidunt. Fusce in arcu quis massa vulputate euismod ac sed turpis. Donec porta sollicitudin nibh vel aliquet.',
+    duration: 2000,
+  },
+};
+
 export const Everything: Story = {
   args: {
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet maximus lorem. Sed lobortis vitae arcu non tincidunt. Fusce in arcu quis massa vulputate euismod ac sed turpis. Donec porta sollicitudin nibh vel aliquet.',
