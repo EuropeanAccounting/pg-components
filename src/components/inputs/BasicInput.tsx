@@ -56,7 +56,8 @@ export default function BasicInput({
         id={inputId}
         placeholder={label}
         className={`
-            peer relative h-12 w-full border-slate-200 px-4 ${icon ? 'pl-12' : ''} ${isSecondary ? 'rounded border' : 'border-b'}
+            peer relative h-12 w-full border-slate-200 px-4
+            ${icon ? 'pl-12' : ''} ${isSecondary ? 'rounded border' : 'border-b'} ${rest.readOnly ? 'border-dashed' : 'border-solid'}
           text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white
           focus:border-primary-500 focus:outline-none focus-visible:outline-none
           disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400

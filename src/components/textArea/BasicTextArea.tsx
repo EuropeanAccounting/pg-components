@@ -63,7 +63,8 @@ export default function BasicTextArea({
                 id={textAreaId}
                 rows={3}
                 placeholder={label}
-                className={`peer relative w-full ${isSecondary ? 'rounded border' : 'border-b'} border-slate-200
+                className={`peer relative w-full border-slate-200
+                ${isSecondary ? 'rounded border' : 'border-b'} ${rest.readOnly ? 'border-dashed' : 'border-solid'}
                 ${size === 'base' ? 'px-4 py-2 text-sm' : 'p-4'} text-slate-500 placeholder-transparent outline-none
                 transition-all autofill:bg-white focus:border-primary-500 focus:outline-none focus-visible:outline-none
                 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400`}
