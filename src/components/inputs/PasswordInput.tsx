@@ -49,8 +49,8 @@ export default function PasswordInput(props: Props): React.ReactElement {
         id={inputId}
         type={showPassword ? "text" : "password"}
         placeholder={label}
-        className={`peer relative h-12 w-full border-slate-200 px-4
-          ${isSecondary ? 'rounded border' : 'border-b'} text-slate-500
+        className={`peer relative h-12 w-full border-slate-200 px-4 text-slate-500
+          ${isSecondary ? 'rounded border' : 'border-b'} ${rest.readOnly ? 'border-dashed' : 'border-solid'}
           placeholder-transparent outline-none transition-all autofill:bg-white
           focus:border-primary-500
           focus:outline-none focus-visible:outline-none
