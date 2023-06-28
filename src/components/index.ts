@@ -1,5 +1,6 @@
 export { default as Button } from "./buttons";
 export { default as Checkbox } from "./checkbox";
+export { default as DatePicker } from "./datepicker";
 export * from "./dropdowns";
 export { default as ActivityFeed } from "./feeds";
 export * from "./inputs";
