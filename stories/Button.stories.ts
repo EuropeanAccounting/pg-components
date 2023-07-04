@@ -79,3 +79,10 @@ export const TrailingIcon: Story = {
     }
 };
 
+export const Loading: Story = {
+    args: {
+        text: 'Loading',
+        isLoading: true
+    }
+};
+
