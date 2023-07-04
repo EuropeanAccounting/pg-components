@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { alertType } from '../../types';
 
 interface Props {
     /**
@@ -45,8 +46,6 @@ interface Props {
      */
     type?: alertType;
 }
-
-type alertType = 'success' | 'warning' | 'info' | 'danger' | 'default';
 
 const getContainerColorStyle = (type: alertType): string => {
     const colors = {
