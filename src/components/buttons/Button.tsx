@@ -57,13 +57,23 @@ interface Props {
 }
 
 type iconPositionType = 'leading' | 'trailing';
-type styleType = 'normal' | 'outline';
+type styleType = 'normal' | 'outline' | 'danger' | 'success' | 'secondary';
 
-const getContainerColors = (style: styleType): string =>
-    style == 'normal'
-        ? `bg-primary-500 hover:bg-primary-600 focus:bg-primary-700 disabled:bg-primary-300 shadow-primary-200 text-white`
-        : `border border-primary-500 text-primary-500 hover:border-primary-600 hover:text-primary-600 focus:border-primary-700
-           focus:text-primary-700 disabled:text-primary-300 bg-white`;
+const getContainerColors = (style: styleType): string => {
+    switch (style) {
+        case 'outline':
+            return 'border border-primary-500 text-primary-500 hover:border-primary-600 hover:text-primary-600 focus:border-primary-700 focus:text-primary-700 disabled:text-primary-300 bg-white'
+        case 'danger':
+            return 'bg-rose-500 hover:bg-rose-600 focus:bg-rose-700 disabled:bg-rose-300 shadow-rose-200 text-white'
+        case 'success':
+            return 'bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 disabled:bg-emerald-300 shadow-emerald-200 text-white'
+        case 'secondary':
+            return 'bg-secondary-500 hover:bg-secondary-600 focus:bg-secondary-700 disabled:bg-secondary-300 shadow-secondary-200 text-white'
+        // Case normal
+        default:
+            return 'bg-primary-500 hover:bg-primary-600 focus:bg-primary-700 disabled:bg-primary-300 shadow-primary-200 text-white'
+    }
+}
 
 const getSize = (size: sizeType): string => {
     const sizes = {
@@ -123,7 +133,7 @@ export const Button = ({
                 isLoading &&
                 <span className="relative only:-mx-6">
                     <svg
-                        className="w-5 h-5 text-white animate-spin"
+                        className={`w-5 h-5 animate-spin ${style === 'outline' ? 'text-primary-500' : 'text-white'}`}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"

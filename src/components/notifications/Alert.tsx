@@ -83,7 +83,7 @@ const getButtonColorStyle = (type: alertType): string => {
     return colors[type];
 };
 
-export const Alert = ({
+const Alert = ({
     body,
     dismissable = false,
     duration,
@@ -96,14 +96,12 @@ export const Alert = ({
     const [isAlertVisible, setIsAlertVisible] = useState<boolean>(isVisible);
 
     useEffect(() => {
-        setIsAlertVisible(isVisible);
         isVisible && duration &&
             setTimeout(() => {
                 setIsAlertVisible(false);
                 onHidden();
             }, duration);
     }, [isVisible]);
-
 
     return (
         <AnimatePresence>
