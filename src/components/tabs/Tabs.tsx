@@ -1,9 +1,6 @@
 // React imports
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-// Libraries imports
-import { motion } from 'framer-motion';
-
 // Local imports
 import { sizeType } from '../../types/sizeType';
 import { Tab } from '../../types/tab';
@@ -83,8 +80,7 @@ export default function Tabs({
 
     return (
         <section className='flex flex-col h-full'>
-            <motion.ul
-                layout
+            <ul
                 className={`flex items-center border-b border-slate-200 tabs-buttons-scrollbar shrink-0 ${tabButtonSize()}`}
                 role='tablist'
                 ref={wrapperRef}
@@ -100,8 +96,8 @@ export default function Tabs({
                         />
                     )
                 }
-            </motion.ul>
-            <motion.div layout className='h-full tabs-panel-scrollbar'>
+            </ul>
+            <div className='h-full tabs-panel-scrollbar'>
                 {
                     tabs.map(tab =>
                         <TabPanel
@@ -113,7 +109,7 @@ export default function Tabs({
                         />
                     )
                 }
-            </motion.div>
+            </div>
         </section>
     )
 }

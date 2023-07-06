@@ -17,6 +17,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const wrapper = (Story: any) => (
+    <div className='w-[80vw] h-[50vh]'>
+        <Story />
+    </div>
+)
+
 const dataSource: Tab[] = [
     {
         title: 'Test 1',
@@ -53,6 +59,9 @@ export const Default: Story = {
     args: {
         dataSource
     },
+    decorators: [
+        (Story) => wrapper(Story),
+    ]
 };
 
 export const Large: Story = {
@@ -60,4 +69,7 @@ export const Large: Story = {
         dataSource,
         size: 'large'
     },
+    decorators: [
+        (Story) => wrapper(Story),
+    ]
 };

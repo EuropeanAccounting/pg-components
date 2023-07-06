@@ -2,7 +2,6 @@ import React from 'react'
 
 // Libraries imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { motion } from 'framer-motion';
 
 // Local imports
 import { sizeType } from '../../types/sizeType';
@@ -45,8 +44,7 @@ export default function TabButton({ setTabSelected, size, tab, tabSelected }: Pr
     if (index == undefined) return <></>;
     const indexAux = index + 1;
     return (
-        <motion.li
-            layout
+        <li
             role='presentation'
             className='h-full'
         >
@@ -77,6 +75,6 @@ export default function TabButton({ setTabSelected, size, tab, tabSelected }: Pr
                     <FontAwesomeIcon icon={icon} className='text-lg' />
                 </span>
             </button>
-        </motion.li>
+        </li>
     )
 }
