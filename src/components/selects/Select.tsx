@@ -219,6 +219,10 @@ interface Props {
     */
     required?: boolean;
     /**
+    * Read only HTML prop
+    */
+    readOnly?: boolean;
+    /**
     * Disabled HTML prop
     */
     isDisabled?: boolean;
@@ -245,6 +249,7 @@ const Select = ({
     isMulti = false,
     submitOnChange = false,
     needsErrorMessage = true,
+    readOnly = false,
     ...rest
 }: Props): React.ReactElement => {
     const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
@@ -254,7 +259,7 @@ const Select = ({
     const isBase = () => size === 'base';
 
     const labelMenuIsOpenClasses = (field: FieldInputProps<any>): string => {
-        if (menuIsOpen) {
+        if (menuIsOpen && !readOnly) {
             const isMultiClasses = isMulti ? '-top-4' : '-top-2';
             const requiredClasses = requiredNoValue(field) ? 'text-pink-500' : 'text-primary-500';
             return classNames('text-xs', isMultiClasses, requiredClasses);
@@ -273,13 +278,14 @@ const Select = ({
         const isMultiClasses = isMulti ? classNames(isMultiIsBaseClasses, 'h-auto') : notIsMultiIsBaseClasses;
 
         const isSecondaryClasses = rest.isSecondary ? 'rounded border' : 'border-b';
+        const isReadOnlyClasses = readOnly ? 'border-dashed' : '';
 
         const menuIsOpenRequired = requiredNoValue(field) ? 'border-pink-500' : 'border-primary-500';
         const menuIsOpenClasses = menuIsOpen ? menuIsOpenRequired : 'border-slate-200';
 
         const isDisabledClasses = isDisabled ? 'bg-slate-50 text-slate-400' : 'bg-white text-slate-500';
 
-        return classNames(baseClasses, isMultiClasses, isSecondaryClasses, menuIsOpenClasses, isDisabledClasses)
+        return classNames(baseClasses, isMultiClasses, isSecondaryClasses, isReadOnlyClasses, menuIsOpenClasses, isDisabledClasses)
     };
 
     return (
@@ -291,7 +297,7 @@ const Select = ({
                 )
             }
         >
-            <Field name={rest.name} >
+            <Field name={rest.name}>
                 {({ form, field }: FieldProps) => (
                     <>
                         {
@@ -313,6 +319,7 @@ const Select = ({
                             isClearable={isClearable}
                             isMulti={isMulti}
                             closeMenuOnSelect={!isMulti}
+                            menuIsOpen={readOnly ? false : undefined}
                             blurInputOnSelect={!isMulti}
                             onMenuOpen={() => setMenuIsOpen(true)}
                             onMenuClose={() => setMenuIsOpen(false)}

@@ -106,7 +106,7 @@ const Notification = ({
         isAlertVisible &&
         <motion.div
           className={`
-            relative flex w-80 max-w-full flex-col overflow-hidden rounded px-4 py-3 text-sm shadow-lg ring-1 ring-inset
+            relative flex w-80 max-w-full flex-col overflow-hidden rounded px-4 py-3 text-sm shadow-lg ring-1 ring-inset z-10k
             ${getContainerColorStyle(type)}
           `}
           role="status"
