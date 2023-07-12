@@ -19,6 +19,10 @@ interface Props {
     */
     disabled?: boolean;
     /**
+    * Read only HTML prop
+    */
+    readOnly?: boolean;
+    /**
     * Specifies the compoenent auxiliar text.
     */
     helpText?: string;
@@ -51,10 +55,16 @@ const getSVGColors = (variant: variantType): string => {
     return colors[variant];
 }
 
-export const Checkbox = (props: Props): React.ReactElement => {
+export const Checkbox = ({
+    helpText,
+    text,
+    variant = 'primary',
+    disabled = false,
+    readOnly = false,
+    ...rest
+}: Props): React.ReactElement => {
 
     const id = useId();
-    const { helpText, text, variant = 'primary', ...rest } = props;
 
     return (
         <div className='flex flex-col'>
@@ -62,22 +72,23 @@ export const Checkbox = (props: Props): React.ReactElement => {
                 <Field
                     {...rest}
                     className={`
-                        w-4 h-4 transition-colors border-2 rounded appearance-none cursor-pointer peer focus:outline-none 
-                        focus-visible:outline-none disabled:cursor-not-allowed
-                        bg-white border-secondary-300 checked:border-primary-500 checked:hover:border-primary-600 
-                        checked:focus:border-primary-700 disabled:border-secondary-200 disabled:bg-secondary-100
+                        w-4 h-4 transition-colors border-2 rounded appearance-none  peer focus:outline-none 
+                        focus-visible:outline-none bg-white border-secondary-300
+                        checked:border-primary-500 checked:hover:border-primary-600 checked:focus:border-primary-700
+                        ${disabled ? 'cursor-not-allowed border-secondary-200 bg-secondary-100' : 'cursor-pointer'}
+                        ${readOnly && 'border-dashed'}
                         ${getContainerColors(variant)}
                     `}
                     type='checkbox'
+                    disabled={disabled || readOnly}
                     id={id}
                 />
                 {
                     text && (
                         <label
                             className={`
-                                pl-2 cursor-pointer text-secondary-500 peer-disabled:cursor-not-allowed 
-                                peer-required:after:content-['\\00a0*'] peer-invalid:after:text-pink-500
-                                peer-disabled:text-secondary-400
+                                pl-2 text-secondary-500 peer-required:after:content-['\\00a0*'] peer-required:after:text-pink-500
+                                ${disabled ? 'text-secondary-400 cursor-not-allowed ' : 'cursor-pointer'}
                             `}
                             htmlFor={id}
                         >
