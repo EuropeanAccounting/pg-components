@@ -179,7 +179,7 @@ interface Props {
     /**
     * List of inputs to display
     */
-    inputsList: {
+    inputsList?: {
         label: string;
         value: string;
     }[];
