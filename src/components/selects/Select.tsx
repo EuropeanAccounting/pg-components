@@ -315,7 +315,7 @@ const Select = ({
                                 // @ts-ignore
                                 DropdownIndicator, IndicatorSeparator, ClearIndicator, MultiValueContainer, MultiValueRemove, Menu, NoOptionsMessage
                             }}
-                            isSearchable={isSearchable}
+                            isSearchable={isSearchable && !readOnly}
                             isClearable={isClearable}
                             isMulti={isMulti}
                             closeMenuOnSelect={!isMulti}
@@ -328,6 +328,7 @@ const Select = ({
                             placeholder=''
                             options={inputsList}
                             onChange={(newValue: any) => {
+                                form.setFieldTouched(rest.name)
                                 const returnValue = !isMulti
                                     ? newValue.value ?? ''
                                     : newValue.map((obj: { value: string, label: string }) => obj.value)
