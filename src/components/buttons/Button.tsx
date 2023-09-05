@@ -11,6 +11,10 @@ import { sizeType } from "../../types/sizeType";
 
 interface Props {
     /**
+     *  Add an ID to the HTML button.
+     */
+    id?: string;
+    /**
      *  Specifies whether the UI component responds to user interaction.
      */
     disabled?: boolean;
@@ -21,7 +25,7 @@ interface Props {
     /**
     * Specifies whether the UI component includes an FontAwesome icon or not.
     */
-    icon?: IconDefinition;
+    icon?: IconDefinition | SVGAElement;
     /**
     * Specifies the icon position if any.
     */
@@ -87,6 +91,7 @@ const getSize = (size: sizeType): string => {
 const getShadow = (size: sizeType): string => size == 'large' ? 'shadow-lg' : 'shadow-md';
 
 export const Button = ({
+    id,
     text,
     icon,
     onClick,
@@ -98,66 +103,72 @@ export const Button = ({
     elevated = false,
     disabled = false,
     type = 'button'
-}: Props): React.ReactElement =>
-    <AnimatePresence>
-        <motion.button
-            className={`inline-flex w-full font-semibold items-center justify-center gap-2 text-sm tracking-wide transition duration-300 
-                whitespace-nowrap focus-visible:outline-none disabled:cursor-not-allowed disabled:shadow-none
-                disabled:border-primary-300 focus:shadow-primary-200 hover:shadow-primary-200 
-                ${rounded ? 'rounded-full' : 'rounded'} ${elevated && getShadow(size)} ${getSize(size)} ${getContainerColors(style)}`}
-            initial={false}
-            whileTap={{ y: 2 }}
-            transition={{
-                ease: 'linear',
-                duration: 0.001
-            }}
-            onClick={onClick}
-            disabled={disabled}
-            type={type}
-        >
-            {
-                text &&
-                <span
-                    className={`${(icon && iconPosition == 'leading') && 'order-2'}`}
-                >
-                    {text}
-                </span>
-            }
-            {
-                icon &&
-                <span className={`relative ${size == 'base' ? 'only:-mx-5' : 'only:-mx-6'}`}>
-                    <FontAwesomeIcon icon={icon} />
-                </span>
-            }
-            {
-                isLoading &&
-                <span className="relative only:-mx-6">
-                    <svg
-                        className={`w-5 h-5 animate-spin ${style === 'outline' ? 'text-primary-500' : 'text-white'}`}
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        role="graphics-symbol"
-                        aria-labelledby="title-36 desc-36"
+}: Props): React.ReactElement => {
+    const isIconDefinition = icon && typeof icon === 'object' && 'iconName' in icon;
+
+    return (
+        <AnimatePresence>
+            <motion.button
+                id={id}
+                className={`inline-flex w-full font-semibold items-center justify-center gap-2 text-sm tracking-wide transition duration-300 
+                    whitespace-nowrap focus-visible:outline-none disabled:cursor-not-allowed disabled:shadow-none
+                    disabled:border-primary-300 focus:shadow-primary-200 hover:shadow-primary-200 
+                    ${rounded ? 'rounded-full' : 'rounded'} ${elevated && getShadow(size)} ${getSize(size)} ${getContainerColors(style)}`}
+                initial={false}
+                whileTap={{ y: 2 }}
+                transition={{
+                    ease: 'linear',
+                    duration: 0.001
+                }}
+                onClick={onClick}
+                disabled={disabled}
+                type={type}
+            >
+                {text && (
+                    <span
+                        className={`${icon && iconPosition === 'leading' ? 'order-2' : ''}`}
                     >
-                        <title id="title-36">Loading icon</title>
-                        <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                        ></circle>
-                        <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
-                    </svg>
-                </span>
-            }
-        </motion.button>
-    </AnimatePresence>
+                        {text}
+                    </span>
+                )}
+                {icon && (
+                    <span className={`relative ${size === 'base' ? 'only:-mx-5' : 'only:-mx-6'}`}>
+                        {isIconDefinition ?
+                            <FontAwesomeIcon icon={icon} />
+                            : <>{icon}</>
+                        }
+                    </span>
+                )}
+                {isLoading &&
+                    <span className="relative only:-mx-6">
+                        <svg
+                            className={`w-5 h-5 animate-spin ${style === 'outline' ? 'text-primary-500' : 'text-white'}`}
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            role="graphics-symbol"
+                            aria-labelledby="title-36 desc-36"
+                        >
+                            <title id="title-36">Loading icon</title>
+                            <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                            ></circle>
+                            <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                        </svg>
+                    </span>
+                }
+            </motion.button>
+        </AnimatePresence>
+    );
+};
 
 export default Button;
