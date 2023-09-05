@@ -134,8 +134,8 @@ export const Button = ({
                 {icon && (
                     <span className={`relative ${size === 'base' ? 'only:-mx-5' : 'only:-mx-6'}`}>
                         {isIconDefinition ?
-                            <FontAwesomeIcon icon={icon} />
-                            : <>{icon}</>
+                            <FontAwesomeIcon icon={icon as IconDefinition} />
+                        : <>{icon as SVGAElement}</>
                         }
                     </span>
                 )}
