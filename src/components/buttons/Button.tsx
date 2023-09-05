@@ -25,7 +25,7 @@ interface Props {
     /**
     * Specifies whether the UI component includes an FontAwesome icon or not.
     */
-    icon?: IconDefinition | SVGAElement;
+    icon?: IconDefinition | SVGElement;
     /**
     * Specifies the icon position if any.
     */
@@ -135,7 +135,7 @@ export const Button = ({
                     <span className={`relative ${size === 'base' ? 'only:-mx-5' : 'only:-mx-6'}`}>
                         {isIconDefinition ?
                             <FontAwesomeIcon icon={icon as IconDefinition} />
-                        : <>{icon as SVGAElement}</>
+                        : <>{icon as SVGElement}</>
                         }
                     </span>
                 )}
